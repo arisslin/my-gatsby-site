@@ -22,9 +22,11 @@ const Layout = ({ pageTitle, children }: LayoutProps) => {
             <Link to='/'>Home</Link>
           </li>
           {links.map((link) => (
-            <Link key={link.id} to={`/${link.frontmatter.slug}`}>
-              {link.frontmatter.title}
-            </Link>
+            <li key={link.id}>
+              <Link to={`/${link.frontmatter.slug}`}>
+                {link.frontmatter.title}
+              </Link>
+            </li>
           ))}
         </ul>
       </nav>
