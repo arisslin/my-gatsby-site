@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useSiteMetadata } from '../queryHooks';
+import { useSiteMetadata } from '../hooks/useSiteMetadata';
 
 type SeoProps = {
   pageTitle: string;

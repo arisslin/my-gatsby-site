@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { Link } from 'gatsby';
+import { Link, graphql, useStaticQuery } from 'gatsby';
 import { container, siteTitle, navList } from './layout.module.css';
-import { useSiteMetadata } from '../queryHooks';
+import { useSiteMetadata } from '../hooks/useSiteMetadata';
+import { useLegalPages } from '../hooks/useLegalPages';
 
 type LayoutProps = {
   pageTitle: string;
@@ -10,6 +11,7 @@ type LayoutProps = {
 
 const Layout = ({ pageTitle, children }: LayoutProps) => {
   const data = useSiteMetadata();
+  const links = useLegalPages();
 
   return (
     <div className={container}>
@@ -19,9 +21,11 @@ const Layout = ({ pageTitle, children }: LayoutProps) => {
           <li>
             <Link to='/'>Home</Link>
           </li>
-          <li>
-            <Link to='/blog'>Blog</Link>
-          </li>
+          {links.map((link) => (
+            <Link key={link.id} to={`/${link.frontmatter.slug}`}>
+              {link.frontmatter.title}
+            </Link>
+          ))}
         </ul>
       </nav>
       <main>

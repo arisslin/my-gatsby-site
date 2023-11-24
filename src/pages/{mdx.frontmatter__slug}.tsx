@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Layout from '../../components/layout';
-import Seo from '../../components/seo';
+import Layout from '../components/layout';
+import Seo from '../components/seo';
 import { HeadProps, PageProps, graphql } from 'gatsby';
 
 type DataProps = {
@@ -12,7 +12,7 @@ type DataProps = {
   };
 };
 
-const BlogPost = ({ data, children }: PageProps<DataProps>) => {
+const LegalPage = ({ data, children }: PageProps<DataProps>) => {
   return (
     <Layout pageTitle={data.mdx.frontmatter.title}>
       <p>Posted: {data.mdx.frontmatter.date}</p>
@@ -36,4 +36,4 @@ export const Head = ({ data }: HeadProps<DataProps>) => (
   <Seo pageTitle={data.mdx.frontmatter.title} />
 );
 
-export default BlogPost;
+export default LegalPage;

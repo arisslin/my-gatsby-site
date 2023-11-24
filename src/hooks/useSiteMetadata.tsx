@@ -23,3 +23,14 @@ export const useSiteMetadata = (): SiteMetaData => {
 
   return data.site.siteMetadata;
 };
+
+type LegalPagesQuery = {
+  allMdx: {
+    nodes: {
+      frontmatter: {
+        title: string;
+        slug: string;
+      };
+    }[];
+  };
+};
