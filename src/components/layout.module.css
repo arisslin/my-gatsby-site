@@ -10,3 +10,10 @@
   font-weight: 700;
   margin: 3rem 0;
 }
+
+.nav-list {
+  display: flex;
+  gap: 1rem;
+  padding: 0;
+  list-style: none;
+}

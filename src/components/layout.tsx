@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from 'gatsby';
-import { container, siteTitle } from './layout.module.css';
+import { container, siteTitle, navList } from './layout.module.css';
 import { useSiteMetadata } from '../queryHooks';
 
 type LayoutProps = {
@@ -15,9 +15,12 @@ const Layout = ({ pageTitle, children }: LayoutProps) => {
     <div className={container}>
       <header className={siteTitle}>{data.title}</header>
       <nav>
-        <ul>
+        <ul className={navList}>
           <li>
             <Link to='/'>Home</Link>
+          </li>
+          <li>
+            <Link to='/blog'>Blog</Link>
           </li>
         </ul>
       </nav>
