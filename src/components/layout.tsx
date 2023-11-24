@@ -1,8 +1,8 @@
+import { Link } from 'gatsby';
 import * as React from 'react';
-import { Link, graphql, useStaticQuery } from 'gatsby';
-import { container, siteTitle, navList } from './layout.module.css';
-import { useSiteMetadata } from '../hooks/useSiteMetadata';
 import { useLegalPages } from '../hooks/useLegalPages';
+import { useSiteMetadata } from '../hooks/useSiteMetadata';
+import { container, navList, siteTitle } from './layout.module.css';
 
 type LayoutProps = {
   pageTitle: string;

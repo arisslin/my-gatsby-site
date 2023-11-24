@@ -1,5 +1,4 @@
-import { useStaticQuery, graphql } from 'gatsby';
-import { type } from 'os';
+import { graphql, useStaticQuery } from 'gatsby';
 
 type LegalPage = {
   frontmatter: {
