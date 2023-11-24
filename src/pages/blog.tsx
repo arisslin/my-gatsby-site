@@ -2,21 +2,35 @@ import * as React from 'react';
 import Layout from '../components/layout';
 import Seo from '../components/seo';
 import { HeadFC, PageProps, graphql } from 'gatsby';
+import { blogList } from './blog.module.css';
 
 type DataProps = {
-  allFile: {
+  allMdx: {
     nodes: {
-      name: string;
+      frontmatter: {
+        date: string;
+        title: string;
+      };
+      id: string;
+      excerpt: string;
     }[];
   };
 };
 
 const BlogPage = ({ data }: PageProps<DataProps>) => {
+  console.log(data);
+
   return (
     <Layout pageTitle='My Blog Posts'>
-      <ul>
-        {data.allFile.nodes.map((node) => (
-          <li key={node.name}>{node.name}</li>
+      <ul className={blogList}>
+        {data.allMdx.nodes.map((node) => (
+          <li key={node.id}>
+            <article>
+              <h2>{node.frontmatter.title}</h2>
+              <p>Posted: {node.frontmatter.date}</p>
+              <p>{node.excerpt} ...</p>
+            </article>
+          </li>
         ))}
       </ul>
     </Layout>
@@ -25,9 +39,14 @@ const BlogPage = ({ data }: PageProps<DataProps>) => {
 
 export const query = graphql`
   query {
-    allFile {
+    allMdx(sort: { frontmatter: { date: DESC } }) {
       nodes {
-        name
+        frontmatter {
+          date(formatString: "DD.MM.YYYY")
+          title
+        }
+        id
+        excerpt
       }
     }
   }
