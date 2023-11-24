@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { Link, useStaticQuery, graphql } from 'gatsby';
+import { Link } from 'gatsby';
 import { container, siteTitle } from './layout.module.css';
+import { useSiteMetadata } from '../queryHooks';
 
 type LayoutProps = {
   pageTitle: string;
@@ -8,19 +9,11 @@ type LayoutProps = {
 };
 
 const Layout = ({ pageTitle, children }: LayoutProps) => {
-  const data = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
+  const data = useSiteMetadata();
 
   return (
     <div className={container}>
-      <header className={siteTitle}>{data.site.siteMetadata.title}</header>
+      <header className={siteTitle}>{data.title}</header>
       <nav>
         <ul>
           <li>
