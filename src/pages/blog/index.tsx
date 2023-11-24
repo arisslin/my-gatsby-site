@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Layout from '../components/layout';
-import Seo from '../components/seo';
-import { HeadFC, PageProps, graphql } from 'gatsby';
+import Layout from '../../components/layout';
+import Seo from '../../components/seo';
+import { HeadFC, PageProps, graphql, Link } from 'gatsby';
 import { blogList } from './blog.module.css';
 
 type DataProps = {
@@ -10,6 +10,7 @@ type DataProps = {
       frontmatter: {
         date: string;
         title: string;
+        slug: string;
       };
       id: string;
       excerpt: string;
@@ -26,7 +27,11 @@ const BlogPage = ({ data }: PageProps<DataProps>) => {
         {data.allMdx.nodes.map((node) => (
           <li key={node.id}>
             <article>
-              <h2>{node.frontmatter.title}</h2>
+              <h2>
+                <Link to={`/blog/${node.frontmatter.slug}`}>
+                  {node.frontmatter.title}
+                </Link>
+              </h2>
               <p>Posted: {node.frontmatter.date}</p>
               <p>{node.excerpt} ...</p>
             </article>
@@ -44,6 +49,7 @@ export const query = graphql`
         frontmatter {
           date(formatString: "DD.MM.YYYY")
           title
+          slug
         }
         id
         excerpt
